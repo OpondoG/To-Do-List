@@ -12,14 +12,14 @@ module.exports = {
                     'css-loader',
                 ],
             },
-            {
-                test: /\.html$/i,
-                loader: 'html-loader',
-            },
-            {
-                test: /\.(png|jpe?g|gif)$/i,
-                type: 'asset/resource',
-            },
+            // {
+            //     test: /\.html$/i,
+            //     loader: 'html-loader',
+            // },
+            // {
+            //     test: /\.(png|jpe?g|gif)$/i,
+            //     type: 'asset/resource',
+            // },
         ],
     },
     devServer: {
@@ -30,4 +30,10 @@ module.exports = {
             template: './src/index.html',
         }),
     ],
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
+    },
+
 };

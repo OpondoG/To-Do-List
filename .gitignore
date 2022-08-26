@@ -1,1 +1,31 @@
 node_modules/
+import './style.css';
+const section = document.querySelector('section');
+const textInput = document.querySelector('input');
+const todosMainContainer = document.querySelector('todos');
+clearAllbtn = document.querySelector('button');
+
+
+class MyObject {
+    constructor(description, completed, index) {
+        this.description = description
+        this.completed = completed
+        this.index.index = completed
+    }
+}
+const myArray = [];
+const addToDo = () => {
+    const todoContainer = document.createElement('div');
+
+    todoContainer.className = 'todoContainer';
+    todoContainer.innerHTML += `
+    <div class="oneChore">
+        <input type="checkbox">
+        <h2>${element.description}</h2>
+        </div>
+        <div class="icon">
+        <i class="fa-ellipsis-vertical"></i>
+        </div>
+    
+    `
+}
