@@ -116,7 +116,7 @@ button {
 }
 
 .todoContainer {
-    border-top: px solid #d0d0d0;
+    border-top: 0px solid #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
     display: flex;
     padding: 10px 10px;
@@ -128,12 +128,6 @@ button {
     background: none;
     border: none;
 }
-
-
-/* .clearBtn {
-    color: #5c5c5c;
-    font-weight: 700;
-} */
 
 .fa-trash-can {
     display: none;
