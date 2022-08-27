@@ -43,6 +43,7 @@ class Tasks {
           tagName: 'span',
           contentEditable: true,
           textContent: task.description,
+          class: task.completed ? 'checkTodo' : null,
         }),
       );
 
