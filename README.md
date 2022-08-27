@@ -2,7 +2,10 @@
 
 # To Do list App: list structure
 
-In this project, you will build a simple HTML list of To Do tasks. The list will be styled according to the specifications listed later in this lesson. This simple web page will be built using webpack and served by a webpack dev server.
+In this project, you will build a simple HTML list of To Do tasks. The list will be styled according to the specifications listed later in this lesson. This simple web page will be built using webpack and served by a webpack dev server
+
+## Livedemo
+[Livedemo](https://opondog.github.io/To-Do-List/dist/)
 
 ## Webpack ( To-Do-List App ) Setup
 Frontend environment for building JavaScript applications
@@ -38,8 +41,8 @@ The demo app is a very simple Joke generator. Replace with your own code and ins
 ## Author
 :bust_in_silhouette: **Alier Philip Maguet**
 - GitHub: [@OpondoG](https://github.com/OpondoG)
-- Twitter: [@AlierPM](https://twitter.com/OpondoG)
-- LinkedIn: [@AlierPM](https://www.linkedin.com/in/gilbert-okonjo-2081331b9/)
+- Twitter: [@OpondoG](https://twitter.com/OpondoG)
+- LinkedIn: [@OpondoG](https://www.linkedin.com/in/gilbert-okonjo-2081331b9/)
 
 
 ## 🤝 Contributing
