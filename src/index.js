@@ -1,173 +1,82 @@
-import { data } from 'vfile';
 import './style.css';
+import tasks from './modules/Tasks.js';
+import utils from './modules/utils.js';
 
 const textInput = document.querySelector('input');
 const todosMainContainer = document.querySelector('.tasks');
 const clearAllbtn = document.querySelector('.clearBtn');
 
-const editTodo = (todoContainer, todo) => {
-  const editInput = document.createElement('input');
-  editInput.type = 'text';
-  editInput.className = 'editInput';
-  editInput.value = todo.textContent;
-  todoContainer.replaceChild(editInput, todo);
-  editInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      const todoContainers = document.querySelectorAll('.todoContainer');
-      const localData = JSON.parse(localStorage.getItem('list'));
-      for (let i = 0; i < todoContainers.length; i += 1) {
-        if (todoContainers[i].classList.contains('checkedContainer')) localData[i].description = editInput.value;
-        localStorage.setItem('list', JSON.stringify(data));
-      }
-    }
-  });
-};
-const removeTodo = (todo) => {
-  todosMainContainer.removeChild(todo);
-  const localData = JSON.parse(localStorage.getItem('list'));
-  const data = Array.from(localData).filter((i) => i.completed === false);
-  console.log(data);
-  for (let i = 0; i < data.length; i += 1) {
-    data[i].index = i + 1;
-    console.log(data[i].index);
-  }
-  console.log(data);
-  // data.map((i) => i.index += 1);
-  localStorage.setItem('list', JSON.stringify(data));
-};
-
-class MyObject {
-  constructor(description, completed, index) {
-    this.description = description;
-    this.completed = completed;
-    this.index = index;
-  }
-}
-const updateLocal = () => {
-  const localData = JSON.parse(localStorage.getItem('list'));
-  const todos = document.querySelectorAll('span');
-  for (let i = 0; i < todos.length; i += 1) {
-    if (todos[i].classList.contains('checkTodo')) {
-      localData[i].completed = true;
-    } else {
-      localData[i].completed = false;
-    }
-  }
-  localStorage.setItem('list', JSON.stringify(localData));
-};
-const myArray = [];
-const addToDo = (todoValue) => {
-  const todoContainer = document.createElement('div');
-
-  todoContainer.className = 'todoContainer';
-  todoContainer.innerHTML += `
-        <input type="checkbox" class="checkbox">
-        <span>${todoValue}</span>
-        <i class="fas fa-ellipsis-v"></i>
-        <i class="fa-solid fa-trash-can"></i>
-    `;
-  todosMainContainer.appendChild(todoContainer);
-
-  const checkbox = document.querySelectorAll('.checkbox');
-  checkbox.forEach((i) => {
-    i.addEventListener('click', () => {
-      i.parentElement.classList.toggle('checkedContainer');
-      i.nextElementSibling.classList.toggle('checkTodo');
-      i.parentElement.lastElementChild.classList.toggle('trash-active');
-      i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disable');
-      updateLocal();
-    });
-  });
-
-  const object = new MyObject(todoValue, false, checkbox.length);
-  myArray.push(object);
-  localStorage.setItem('list', JSON.stringify(myArray));
-
-  const editIcons = document.querySelectorAll('.fa-ellipsis-v');
-  editIcons.forEach((i) => {
-    i.addEventListener('click', () => {
-      editTodo(todoContainer, i.previousElementSibling);
-      i.parentElement.classList.add('checkedContainer');
-    });
-  });
-
-  const removeIcons = document.querySelectorAll('.fa-trash-can');
-  removeIcons.forEach((i) => {
-    i.addEventListener('click', () => {
-      removeTodo(i.parentElement);
-    });
-  });
-};
-
+// Add a task
 textInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter' && textInput.value) {
-    // e.preventDefault();
-    addToDo(textInput.value);
-    textInput.value = (null);
-  }
+  if (e.key !== 'Enter') return;
+
+  tasks.addTask({
+    description: e.target.value.trim(),
+    completed: false,
+  });
+  e.target.value = '';
 });
 
-const getFromLocal = () => {
-  const data = JSON.parse(localStorage.getItem('list'));
-  data.map((i) => {
-    myArray.push(i);
-    const todoContainer = document.createElement('div');
-    todoContainer.className = 'todoContainer';
-    todoContainer.innerHTML += `
-        <input type="checkbox" class="checkbox">
-        <span>${i.description}</span>
-        <i class="fas fa-ellipsis-v"></i>
-        <i class="fa-solid fa-trash-can"></i>
-    `;
-    todosMainContainer.appendChild(todoContainer);
+// Prevent the form from submitting (because you used a form which could have been omitted)
+utils.qs('form').addEventListener('submit', (e) => e.preventDefault());
 
-    const editIcons = document.querySelectorAll('.fa-ellipsis-v');
-    editIcons.forEach((i) => {
-      i.addEventListener('click', () => {
-        editTodo(todoContainer, i.previousElementSibling);
-        i.parentElement.classList.add('checkedContainer');
-      });
-    });
-  });
+// Mark a task as completed
+todosMainContainer.addEventListener('change', (e) => {
+  if (!e.target.classList.contains('checkbox')) return;
 
-  const checkbox = document.querySelectorAll('.checkbox');
-  checkbox.forEach((i) => {
-    i.addEventListener('click', () => {
-      i.parentElement.classList.toggle('checkedContainer');
-      i.nextElementSibling.classList.toggle('checkTodo');
-      i.parentElement.lastElementChild.classList.toggle('trash-active');
-      i.parentElement.lastElementChild.previousElementSibling.classList.toggle('edit-disable');
-      updateLocal();
-    });
-  });
+  const { index } = e.target.parentElement.dataset;
 
-  const removeIcons = document.querySelectorAll('.fa-trash-can');
-  removeIcons.forEach((i) => {
-    i.addEventListener('click', () => {
-      removeTodo(i.parentElement);
-    });
-  });
+  tasks.updateTask(index, 'completed');
+});
 
-  localStorage.setItem('list', JSON.stringify(myArray));
-};
-window.addEventListener('load', getFromLocal);
+// Rename a task
+todosMainContainer.addEventListener('keypress', (e) => {
+  if (e.key !== 'Enter') return;
+  if (!e.target.isContentEditable) return;
 
-const clearAll = () => {
-  const localData = JSON.parse(localStorage.getItem('list'));
-  const todoContainer = document.querySelectorAll('.todoContainer');
-  todoContainer.forEach((i) => {
-    if (i.classList.contains('checkedContainer')) {
-      removeTodo(i);
-    }
-  });
+  e.preventDefault();
 
-  const data = Array.from(localData).filter((i) => i.completed === false);
-  for (let i = 0; i < data.length; i += 1) {
-    data[i].index = i + 1;
-    console.log(data[i].index);
-  }
-  console.log(data);
-  localStorage.setItem('list', JSON.stringify(data));
-};
+  const { index } = e.target.parentElement.dataset;
 
-clearAllbtn.addEventListener('click', clearAll);
+  tasks.updateTask(index, 'description', e.target.textContent.trim());
+});
+
+// Display the trash icon when the content of the task is clicked on
+todosMainContainer.addEventListener('focusin', (e) => {
+  const div = e.target.closest('.todoContainer');
+
+  if (!div) return;
+
+  utils.qs('i', div).classList.toggle('hidden');
+  utils.qsa('i', div)[1].classList.toggle('hidden');
+});
+
+// Remove the trash icon when task parent element is blured
+todosMainContainer.addEventListener('focusout', (e) => {
+  const div = e.target.closest('.todoContainer');
+
+  if (!div) return;
+
+  setTimeout(() => {
+    utils.qs('i', div).classList.toggle('hidden');
+    utils.qsa('i', div)[1].classList.toggle('hidden');
+  }, 100);
+});
+
+// Remove a single task
+todosMainContainer.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('fa-trash-can')) return;
+
+  const { index } = e.target.closest('.todoContainer').dataset;
+
+  tasks.removeTask(index);
+});
+
+// Clear all completed tasks
+clearAllbtn.addEventListener('click', () => {
+  const indexes = utils
+    .qsa('input[type=checkbox]:checked', todosMainContainer)
+    .map((task) => task.parentElement.dataset.index);
+
+  tasks.removeTask(indexes);
+});
