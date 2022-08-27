@@ -36,10 +36,10 @@ The demo app is a very simple Joke generator. Replace with your own code and ins
 
 
 ## Author
-:bust_in_silhouette: **Alier Philip Maguet**
+:bust_in_silhouette: **Okonjo Gilbert**
 - GitHub: [@OpondoG](https://github.com/OpondoG)
-- Twitter: [@AlierPM](https://twitter.com/OpondoG)
-- LinkedIn: [@AlierPM](https://www.linkedin.com/in/gilbert-okonjo-2081331b9/)
+- Twitter: [@OpondoG](https://twitter.com/OpondoG)
+- LinkedIn: [@Okonjo](https://www.linkedin.com/in/gilbert-okonjo-2081331b9/)
 
 
 ## 🤝 Contributing
