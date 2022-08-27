@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Lucida Grande', Verdana, Arial, Tahoma, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f1f2f5;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid gray;
+  width: 60%;
+  margin: auto;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2%;
+  border-bottom: 2px solid;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+}
+
+.tasks {
+  width: 100%;
+}
+
+.choreDetails {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3% 2%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.oneChore {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+
+.top h2 {
+  font-size: 1rem;
+}
+
+.oneChore h2 {
+  padding: 0 15px;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.addTasks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1% 2%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.add {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon i {
+  color: hsl(0, 63%, 6%);
+  cursor: cell;
+}
+
+.clearBtn {
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  background-color: #f8f8f8;
+  width: 100%;
+}
+
+.addTasks input {
+  border: none;
+  padding: 0.4rem;
+}
+
+.addTasks input::placeholder {
+  font-style: italic;
+  color: #cfcfcf;
+}
+
+.todoContainer {
+  border-top: 0 solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  display: flex;
+  padding: 10px 10px;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.edit-disable {
+  display: none;
+}
+
+.checkedContainer {
+  background-color: #fffed3;
+}
+
+.checkTodo {
+  text-decoration: line-through;
+}
+
+.checkbox {
+  width: 10%;
+}
+
+.fa-arrows-rotate {
+  font-size: 18px;
+}
+
+.fas {
+  float: right;
+}
+
+.fa-solid {
+  float: right;
+}
+
+span {
+  outline: none;
+  flex: 1;
+}
