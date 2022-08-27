@@ -25,8 +25,13 @@ const editTodo = (todoContainer, todo) => {
 const removeTodo = (todo) => {
     todosMainContainer.removeChild(todo);
     const localData = JSON.parse(localStorage.getItem('list'));
-    const data = Array.from(localData).filter((i) => i.completed);
-    console.log(data.list)
+    const data = Array.from(localData).filter((i) => i.completed === false);
+    console.log(data)
+    for (let i = 0; i < data.length; i += 1) {
+        data[i].index = i + 1;
+        console.log(data[i].index)
+    }
+    console.log(data)
         // data.map((i) => i.index += 1);
     localStorage.setItem('list', JSON.stringify(data));
 };
@@ -149,13 +154,6 @@ window.addEventListener('load', getFromLocal);
 
 const clearAll = () => {
     const localData = JSON.parse(localStorage.getItem('list'));
-
-    // const Data = localData.filter((i) => {
-    //     i.completed === false;
-    // })
-    // Data.map((i) => i.index = count += 1);
-    // localStorage.setItem('list', JSON.stringify(Data));
-
     const todoContainer = document.querySelectorAll('.todoContainer');
     todoContainer.forEach((i) => {
         if (i.classList.contains('checkedContainer')) {
