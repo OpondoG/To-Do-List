@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: #f1f2f5;
+  justify-content: center;
 }
 
 .container {
@@ -37,6 +38,7 @@ button {
   border: none;
   outline: none;
   background: none;
+  width: 100%;
 }
 
 .tasks {
@@ -91,11 +93,11 @@ button {
 }
 
 .icon i {
-  color: #cfcfcf;
+  color: hsl(0, 63%, 6%);
   cursor: cell;
 }
 
-.clearAll {
+.clearBtn {
   padding: 2%;
   display: flex;
   justify-content: center;
@@ -113,13 +115,53 @@ button {
   color: #cfcfcf;
 }
 
+.todoContainer {
+  border-top: 0 solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  display: flex;
+  padding: 10px 10px;
+  align-items: center;
+}
+
 .btn {
   cursor: pointer;
   background: none;
   border: none;
 }
 
-.clearBtn {
-  color: #5c5c5c;
-  font-weight: 700;
+.hidden {
+  display: none;
+}
+
+.edit-disable {
+  display: none;
+}
+
+.checkedContainer {
+  background-color: #fffed3;
+}
+
+.checkTodo {
+  text-decoration: line-through;
+}
+
+.checkbox {
+  width: 10%;
+}
+
+.fa-arrows-rotate {
+  font-size: 18px;
+}
+
+.fas {
+  float: right;
+}
+
+.fa-solid {
+  float: right;
+}
+
+span {
+  outline: none;
+  flex: 1;
 }
